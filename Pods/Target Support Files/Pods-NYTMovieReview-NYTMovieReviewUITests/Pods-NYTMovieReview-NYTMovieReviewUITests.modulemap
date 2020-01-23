@@ -1,0 +1,6 @@
+framework module Pods_NYTMovieReview_NYTMovieReviewUITests {
+  umbrella header "Pods-NYTMovieReview-NYTMovieReviewUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

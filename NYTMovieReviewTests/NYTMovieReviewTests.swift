@@ -10,25 +10,43 @@ import XCTest
 @testable import NYTMovieReview
 
 class NYTMovieReviewTests: XCTestCase {
+    
+    var vc: ReviewListViewController!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        
+        vc = ReviewListViewController()
+        vc.loadView()
+        vc.viewDidLoad()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+    
+    func testThatViewLoads() {
+        XCTAssertNotNil(vc.view, "View not instantiated properly")
+    }
+    
+    func testThatTableViewLoads() {
+        XCTAssertNotNil(vc.tableView, "Table view not initiated")
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testThatViewConformsToUITableViewDataSource() {
+        XCTAssertTrue(vc.conforms(to: UITableViewDataSource.self), "View does not conform to UITableView datasource protocol")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+     
+    func testThatTableViewHasDataSource() {
+        XCTAssertNotNil(vc.tableView.dataSource, "Table datasource cannot be nil")
     }
-
+     
+    func testThatViewConformsToUITableViewDelegate() {
+        XCTAssertTrue(vc.conforms(to: UITableViewDelegate.self), "View does not conform to UITableView delegate protocol")
+    }
+     
+    func testTableViewIsConnectedToDelegate() {
+        XCTAssertNotNil(vc.tableView.delegate, "Table delegate cannot be nil")
+    }
+          
 }
